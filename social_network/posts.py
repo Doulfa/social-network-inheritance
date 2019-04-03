@@ -20,17 +20,30 @@ class TextPost(Post):  # Inherit properly
             
     def __str__(self):
         
-        timestamp = datetime.timestamp(self.timestamp) # convert timestamp to integer before passing below
-        dt_object = datetime.fromtimestamp(timestamp)
-        week_name=get_week_day_name(dt_object.weekday())
-        m=dt_object.month
-        s_m =short_name(m)
-        d = dt_object.day
-        y = dt_object.year
-        # '@{} {}: "{}"{}{}, {} {}, {}'.format(self.user.first_name,self.user.last_name,self.text,"\n\t",week_name,s_m,d,y)
-        return '@{} {}: "{}"{}{}, {} {}, {}'.format(self.user.first_name,self.user.last_name,self.text,"\n\t",week_name,s_m,d,y)
-
-
+#         timestamp = datetime.timestamp(self.timestamp) # convert timestamp to integer before passing below
+#         dt_object = datetime.fromtimestamp(timestamp)
+#         week_name=get_week_day_name(dt_object.weekday())
+#         m=dt_object.month
+#         s_m =short_name(m)
+#         d = dt_object.day
+#         y = dt_object.year
+#         # '@{} {}: "{}"{}{}, {} {}, {}'.format(self.user.first_name,self.user.last_name,self.text,"\n\t",week_name,s_m,d,y)
+#         return '@{} {}: "{}"{}{}, {} {}, {}'.format(self.user.first_name,self.user.last_name,self.text,"\n\t",week_name,s_m,d,y)
+        
+        timestamp = self.timestamp
+        #tm_year=2017
+        #tm_mon=1
+        #tm_mday=10
+        #tm_wday=1
+        dt_time = timestamp.timetuple()
+        tm_year = dt_time[0]
+        tm_mon = dt_time[1]
+        tm_mday = dt_time[2]
+        tm_wday = dt_time[6]
+        week_name=get_week_day_name(tm_wday)
+        s_m =short_name(tm_mon)
+        return '@{} {}: "{}"{}{}, {} {}, {}'.format(self.user.first_name,self.user.last_name,self.text,"\n\t",week_name,s_m,tm_mday,tm_year)
+        
 class PicturePost(Post):  # Inherit properly
     def __init__(self, text, image_url, timestamp=None):
         super(PicturePost,self).__init__(text)
@@ -39,16 +52,30 @@ class PicturePost(Post):  # Inherit properly
 
     def __str__(self):
         
-        timestamp = datetime.timestamp(self.timestamp) # convert timestamp to integer before passing below
-        dt_object = datetime.fromtimestamp(timestamp)
-        week_name=get_week_day_name(dt_object.weekday())
-        m=dt_object.month
-        s_m =short_name(m)
-        d = dt_object.day
-        y = dt_object.year
         
-        return '@{} {}: "{}"{}{}{}{}, {} {}, {}'.format(self.user.first_name,self.user.last_name,self.text,"\n\t",self.image_url,"\n\t",week_name,s_m,d,y)
+#         timestamp = datetime.timestamp(self.timestamp) # convert timestamp to integer before passing below
+#         dt_object = datetime.fromtimestamp(timestamp)
+#         week_name=get_week_day_name(dt_object.weekday())
+#         m=dt_object.month
+#         s_m =short_name(m)
+#         d = dt_object.day
+#         y = dt_object.year
+        
+#         return '@{} {}: "{}"{}{}{}{}, {} {}, {}'.format(self.user.first_name,self.user.last_name,self.text,"\n\t",self.image_url,"\n\t",week_name,s_m,d,y)
 
+        timestamp = self.timestamp
+        #tm_year=2017
+        #tm_mon=1
+        #tm_mday=10
+        #tm_wday=1
+        dt_time = timestamp.timetuple()
+        tm_year = dt_time[0]
+        tm_mon = dt_time[1]
+        tm_mday = dt_time[2]
+        tm_wday = dt_time[6]
+        week_name=get_week_day_name(tm_wday)
+        s_m =short_name(tm_mon)
+        return '@{} {}: "{}"{}{}{}{}, {} {}, {}'.format(self.user.first_name,self.user.last_name,self.text,"\n\t",self.image_url,"\n\t",week_name,s_m,tm_mday,tm_year)
                                                         
 class CheckInPost(Post):  # Inherit properly
     def __init__(self, text, latitude, longitude, timestamp=None):
@@ -59,13 +86,26 @@ class CheckInPost(Post):  # Inherit properly
 
     def __str__(self):
         
-        timestamp = datetime.timestamp(self.timestamp) # convert timestamp to integer before passing below
-        dt_object = datetime.fromtimestamp(timestamp)
-        week_name=get_week_day_name(dt_object.weekday())
-        m=dt_object.month
-        s_m =short_name(m)
-        d = dt_object.day
-        y = dt_object.year
         
-        return '@{} Checked In: "{}"{}{}, {}{}{}, {} {}, {}'.format(self.user.first_name,self.text,"\n\t",self.latitude,self.longitude,"\n\t",week_name,s_m,d,y)
-    
+#         timestamp = datetime.timestamp(self.timestamp) # convert timestamp to integer before passing below
+#         dt_object = datetime.fromtimestamp(timestamp)
+#         week_name=get_week_day_name(dt_object.weekday())
+#         m=dt_object.month
+#         s_m =short_name(m)
+#         d = dt_object.day
+#         y = dt_object.year
+        
+#         return '@{} Checked In: "{}"{}{}, {}{}{}, {} {}, {}'.format(self.user.first_name,self.text,"\n\t",self.latitude,self.longitude,"\n\t",week_name,s_m,d,y)
+        timestamp = self.timestamp
+        #tm_year=2017
+        #tm_mon=1
+        #tm_mday=10
+        #tm_wday=1
+        dt_time = timestamp.timetuple()
+        tm_year = dt_time[0]
+        tm_mon = dt_time[1]
+        tm_mday = dt_time[2]
+        tm_wday = dt_time[6]
+        week_name=get_week_day_name(tm_wday)
+        s_m =short_name(tm_mon)
+        return '@{} Checked In: "{}"{}{}, {}{}{}, {} {}, {}'.format(self.user.first_name,self.text,"\n\t",self.latitude,self.longitude,"\n\t",week_name,s_m,tm_mday,tm_year)
